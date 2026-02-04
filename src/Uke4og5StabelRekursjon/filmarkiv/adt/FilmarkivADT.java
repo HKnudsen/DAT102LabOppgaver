@@ -3,6 +3,8 @@ package Uke4og5StabelRekursjon.filmarkiv.adt;
 import Uke4og5StabelRekursjon.filmarkiv.impl.Film;
 import Uke4og5StabelRekursjon.filmarkiv.impl.Sjanger;
 
+import java.util.Map;
+
 public interface FilmarkivADT {
     /**
      * Hente en film med gitt filmnr fra arkivet
@@ -49,4 +51,9 @@ public interface FilmarkivADT {
      * @return antall filmer i arkivet
      */
     int antall();
+
+    /**
+     * Gir en oversikt over antall filmer i hver sjanger
+     */
+    Map<String, Integer> antallFordeltPaSjanger();
 }

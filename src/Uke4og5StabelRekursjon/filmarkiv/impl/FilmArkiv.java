@@ -70,10 +70,12 @@ public class FilmArkiv implements FilmarkivADT {
         int antallTreff = 0;
         Film[] filtrerteFilmer = new Film[this.antall];
         for(Film f : this.tabell) {
-            if(f.getTittel().contains(delstreng)) {
-                filtrerteFilmer[antallTreff] = f;
-                antallTreff++;
+            if(f!=null) {
+                if(f.getTittel().contains(delstreng)) {
+                    filtrerteFilmer[antallTreff] = f;
+                    antallTreff++;
 
+                }
             }
         }
         return trimTab(filtrerteFilmer, antallTreff);
@@ -84,15 +86,17 @@ public class FilmArkiv implements FilmarkivADT {
         Film[] filtrerteFilmer = new Film[this.antall];
         int antallTreff = 0;
         for(Film f : this.tabell) {
-            if (f.getProdusent().contains(delstreng)) {
-                filtrerteFilmer[antallTreff] = f;
-                antallTreff++;
+            if(f!=null) {
+                if (f.getProdusent().contains(delstreng)) {
+                    filtrerteFilmer[antallTreff] = f;
+                    antallTreff++;
+                }
             }
         }
         return trimTab(filtrerteFilmer, antallTreff);
     }
 
-
+    @Override
     public Map<String, Integer> antallFordeltPaSjanger() {
         Map<String, Integer> sjangerMap = new HashMap<>();
 

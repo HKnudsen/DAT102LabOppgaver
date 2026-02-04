@@ -82,4 +82,11 @@ public class Film {
     public void setFilmselskap(String filmselskap) {
         this.filmselskap = filmselskap;
     }
+
+    @Override
+    public String toString() {
+        return (this.filmnr + " | Produsent: " + this.produsent + " | Tittel: " + this.tittel +
+                " | Lansering: " + this.lansering + " | Sjanger: " + this.getSjanger() +
+                " | Filmselskap: " + this.filmselskap);
+    }
 }
