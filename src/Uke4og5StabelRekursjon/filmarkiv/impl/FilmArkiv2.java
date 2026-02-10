@@ -44,6 +44,7 @@ public class FilmArkiv2 implements FilmarkivADT {
 
             }
         }
+        return false;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class Fibonacci {
     }
 
     static void main() {
-        System.out.println(beregn(4));
+        System.out.println(beregn(3));
     }
 
     //O(n)
