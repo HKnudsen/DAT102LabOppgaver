@@ -17,6 +17,7 @@ public class SortMethods {
             a[j + 1] = temp;
         }
     }
+
     // ----- SELECTION SORT ------ //
     public static <T extends Comparable<? super T>> void selectionSort(T[] a) {
         for(int i = 0; i < a.length; i++) {
@@ -37,7 +38,7 @@ public class SortMethods {
     // --------------- Quicksort ---------------- //
     public static <T extends Comparable<? super T>> int partition(T[] a, int low, int high) {
         // Choose the pivot
-        T pivot = a[high];
+        T pivot = a[(high + low) / 2];
 
         // Index of smaller elements and indicates the right position of pivot found so far
         int i = low - 1;
@@ -74,7 +75,7 @@ public class SortMethods {
             // Recursion calls for smaller elements
             // And greater or equals elements
             quickSort(a, low, pi-1);
-            quickSort(a, pi+1, high);
+            quickSort(a, pi, high);
         }
     }
 
