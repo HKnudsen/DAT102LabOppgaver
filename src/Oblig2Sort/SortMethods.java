@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class SortMethods {
+    // ------- INSERTION SORT -------- //
     public static <T extends Comparable<? super T>> void insertionSort(T[] a) {
         T temp;
         for (int i = 1; i < a.length; i++) {
@@ -16,7 +17,7 @@ public class SortMethods {
             a[j + 1] = temp;
         }
     }
-
+    // ----- SELECTION SORT ------ //
     public static <T extends Comparable<? super T>> void selectionSort(T[] a) {
         for(int i = 0; i < a.length; i++) {
             int min_index = i;
@@ -75,15 +76,21 @@ public class SortMethods {
             quickSort(a, low, pi-1);
             quickSort(a, pi+1, high);
         }
-
     }
+
+    // ---------- MERGE SORT ----------- //
 
 
     static void main() {
-        Integer[] test = {2,5,7,4,10,1};
+        Integer[] test = {2,5,7,4,10,1, 66, 700, 678, 534, 11, 24, 6, 74, 89, 11111};
         //SortMethods.insertionSort(test);
         //SortMethods.selectionSort(test);
+        long start = System.currentTimeMillis();
+        long startN = System.nanoTime();
         SortMethods.quickSort(test,0,test.length-1);
+        long end = System.currentTimeMillis();
+        long endN = System.nanoTime();
         System.out.println(Arrays.toString(test));
+        System.out.println("TTC: " + (endN - startN));
     }
 }
