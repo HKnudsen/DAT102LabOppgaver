@@ -38,7 +38,7 @@ public class SortMethods {
     // --------------- Quicksort ---------------- //
     public static <T extends Comparable<? super T>> int partition(T[] a, int low, int high) {
         // Choose the pivot
-        T pivot = a[(high + low) / 2];
+        T pivot = a[high];
 
         // Index of smaller elements and indicates the right position of pivot found so far
         int i = low - 1;
@@ -47,7 +47,7 @@ public class SortMethods {
         // elements to the left side. Elements from low to
         // i are smaller after every iteration
 
-        for(int j = low; j <= high; j++) {
+        for(int j = low; j < high; j++) {
             if(a[j].compareTo(pivot) < 0) {
                 i++;
                 swap(a, i, j);
@@ -71,11 +71,11 @@ public class SortMethods {
         if (low < high) {
             // pi is the partition return index of pivot
             int pi = SortMethods.partition(a, low, high);
-            System.out.println(Arrays.toString(a));
+            System.out.println(Arrays.toString(a) + "  |  " + pi);
             // Recursion calls for smaller elements
             // And greater or equals elements
             quickSort(a, low, pi-1);
-            quickSort(a, pi, high);
+            quickSort(a, pi+1, high);
         }
     }
 
