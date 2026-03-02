@@ -1,5 +1,9 @@
 package Uke10.Oppgave4;
 
+import Uke4og5StabelRekursjon.filmarkiv.impl.Film;
+
+import java.util.Arrays;
+
 public class TabellMengde<T> implements MengdeADT<T> {
     private T[] tabell;
     private int antall;
@@ -23,7 +27,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
     @Override
     public boolean inneholder(T element) {
         for(T e : this.tabell) {
-            if (e.equals(element)) {
+            if (e != null && e.equals(element)) {
                 return true;
             }
         }
@@ -39,7 +43,6 @@ public class TabellMengde<T> implements MengdeADT<T> {
                     return false;
                 }
             }
-
         }
         return true;
     }
@@ -65,17 +68,24 @@ public class TabellMengde<T> implements MengdeADT<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        return null;
+        TabellMengde<T> tempTabellMengde = new TabellMengde<>(this.antall);
+
+        for(T e : this.tabell) {
+            if(e != null && !annenMengde.inneholder(e)) {
+                tempTabellMengde.leggTil(e);
+            }
+        }
+        return tempTabellMengde;
     }
 
     @Override
     public void leggTil(T element) {
-        if (this.antall < this.tabell.length) {
-            this.tabell[antall] = element;
-            antall++;
-        } else {
-            utvidTabell();
+        if (!this.inneholder(element)) {
+            if (this.antall >= this.tabell.length) {
+                utvidTabell();
+            }
             this.tabell[antall] = element;
             antall++;
         }
@@ -83,7 +93,13 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-        
+        for (T e : annenMengde.tilTabell()) {
+            if (e != null) {
+                if(!this.inneholder(e)) {
+                    leggTil(e);
+                }
+            }
+        }
     }
 
     @Override
@@ -93,12 +109,12 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @Override
     public T[] tilTabell() {
-        return null;
+        return trimTab(this.tabell, antall);
     }
 
     @Override
     public int antallElementer() {
-        return 0;
+        return this.antall;
     }
 
     @SuppressWarnings("unchecked")
@@ -111,5 +127,15 @@ public class TabellMengde<T> implements MengdeADT<T> {
             this.tabell[i] = temp[i];
         }
 
+    }
+    @SuppressWarnings("unchecked")
+    private T[] trimTab(T[] tab, int n) {
+        T[] nytab = (T[]) new Object[n];
+        int i = 0;
+        while (i < n) {
+            nytab[i] = tab[i];
+            i++;
+        }
+        return nytab;
     }
 }
