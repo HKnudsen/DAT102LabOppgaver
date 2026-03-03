@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TabellMengdeTest {
     @BeforeEach
-    public void setup() {
+    void setup() {
         System.out.println("1");
     }
 
@@ -65,5 +65,70 @@ public class TabellMengdeTest {
         tabell.leggTil(2);
 
         assertEquals(Arrays.toString(new Object[]{1, 2}), Arrays.toString(tabell.tilTabell()));
+    }
+
+    @Test
+    public void testUnion() {
+        TabellMengde<Integer> tabell1 = new TabellMengde<>(3);
+        tabell1.leggTil(1);
+        tabell1.leggTil(2);
+        tabell1.leggTil(3);
+
+        TabellMengde<Integer> tabell2 = new TabellMengde<>(2);
+        tabell2.leggTil(3);
+        tabell2.leggTil(4);
+
+        MengdeADT<Integer> testTabell = tabell1.union(tabell2);
+        assertEquals(Arrays.toString(new Object[]{1,2,3,4}), Arrays.toString(testTabell.tilTabell()));
+    }
+
+    @Test
+    public void testSnitt() {
+        TabellMengde<Integer> tabell1 = new TabellMengde<>(3);
+        tabell1.leggTil(1);
+        tabell1.leggTil(2);
+        tabell1.leggTil(3);
+
+        TabellMengde<Integer> tabell2 = new TabellMengde<>(2);
+        tabell2.leggTil(2);
+        tabell2.leggTil(3);
+        tabell2.leggTil(4);
+
+        MengdeADT<Integer> testTabell = tabell1.snitt(tabell2);
+        assertEquals(Arrays.toString(new Object[]{2,3}), Arrays.toString(testTabell.tilTabell()));
+    }
+
+    @Test
+    public void testDisjunkt() {
+        TabellMengde<Integer> tabell1 = new TabellMengde<>(3);
+        tabell1.leggTil(1);
+        tabell1.leggTil(2);
+        tabell1.leggTil(3);
+
+        TabellMengde<Integer> tabell2 = new TabellMengde<>(2);
+        tabell2.leggTil(4);
+        tabell2.leggTil(5);
+
+        assertTrue(tabell1.erDisjunkt(tabell2));
+    }
+
+    @Test
+    public void testErLik() {
+        TabellMengde<Integer> tabell1 = new TabellMengde<>(3);
+        tabell1.leggTil(1);
+        tabell1.leggTil(2);
+        tabell1.leggTil(3);
+
+        TabellMengde<Integer> tabell2 = new TabellMengde<>(3);
+        tabell2.leggTil(1);
+        tabell2.leggTil(2);
+        tabell2.leggTil(3);
+
+        TabellMengde<Integer> tabell3 = new TabellMengde<>(2);
+        tabell3.leggTil(1);
+        tabell3.leggTil(2);
+
+        assertTrue(tabell1.erLik(tabell2));
+        assertFalse(tabell1.erLik(tabell3));
     }
 }

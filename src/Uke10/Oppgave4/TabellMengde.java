@@ -49,22 +49,49 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
+        if(this.antall == annenMengde.antallElementer()) {
+            for(T e : this.tabell) {
+                if (!annenMengde.inneholder(e)) {
+                    return false;
+                }
+            }
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean erDisjunkt(MengdeADT<T> annenMengde) {
-        return false;
+        for(T e : this.tabell) {
+            if(annenMengde.inneholder(e)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-        return null;
+        TabellMengde<T> snittMengde = new TabellMengde<>(this.antall+annenMengde.antallElementer());
+        for(T e : this.tabell) {
+            if (this.inneholder(e) && annenMengde.inneholder(e)) {
+                snittMengde.leggTil(e);
+            }
+        }
+
+        return snittMengde;
     }
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-        return null;
+        TabellMengde<T> unionMengde = new TabellMengde<>(this.antall+annenMengde.antallElementer());
+        for(T e : this.tabell) {
+            unionMengde.leggTil(e);
+        }
+        for(T e : annenMengde.tilTabell()) {
+            unionMengde.leggTil(e);
+        }
+        return unionMengde;
     }
 
     @Override
@@ -128,6 +155,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
         }
 
     }
+
     @SuppressWarnings("unchecked")
     private T[] trimTab(T[] tab, int n) {
         T[] nytab = (T[]) new Object[n];
