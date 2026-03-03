@@ -74,8 +74,10 @@ public class TabellMengde<T> implements MengdeADT<T> {
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
         TabellMengde<T> snittMengde = new TabellMengde<>(this.antall+annenMengde.antallElementer());
         for(T e : this.tabell) {
-            if (this.inneholder(e) && annenMengde.inneholder(e)) {
-                snittMengde.leggTil(e);
+            if(e != null) {
+                if (this.inneholder(e) && annenMengde.inneholder(e)) {
+                    snittMengde.leggTil(e);
+                }
             }
         }
 
@@ -129,6 +131,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
         }
     }
 
+    //Denne må gjøres
     @Override
     public T fjern(T element) {
         return null;

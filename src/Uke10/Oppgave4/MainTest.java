@@ -6,18 +6,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainTest {
     static void main() {
-        TabellMengde<Integer> tabell1 = new TabellMengde<>(3);
-        tabell1.leggTil(1);
-        tabell1.leggTil(2);
-        tabell1.leggTil(3);
+        LenketMengde<Integer> lenke1 = new LenketMengde<>();
+        lenke1.leggTil(1);
+        lenke1.leggTil(2);
+        lenke1.leggTil(3);
+        lenke1.leggTil(4);
+        lenke1.leggTil(5);
 
-        TabellMengde<Integer> tabell2 = new TabellMengde<>(2);
-        tabell2.leggTil(3);
-        tabell2.leggTil(4);
+        lenke1.fjern(3);
 
-        MengdeADT<Integer> test = tabell1.union(tabell2);
-        System.out.println(test.antallElementer());
+        assertEquals(Arrays.toString(new Object[]{5,4,2,1}), Arrays.toString(lenke1.tilTabell()));
 
-        System.out.println(Arrays.toString(tabell2.tilTabell()));
+        LenketMengde<Integer> lenke2 = new LenketMengde<>();
+        lenke2.leggTil(1);
+        lenke2.leggTil(2);
+        System.out.println(lenke2.antallElementer());
+        lenke2.fjern(2);
+
+        System.out.println(lenke2.antallElementer());
     }
 }
