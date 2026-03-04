@@ -134,6 +134,15 @@ public class TabellMengde<T> implements MengdeADT<T> {
     //Denne må gjøres
     @Override
     public T fjern(T element) {
+
+        for(int i = 0; i < this.antall; i++) {
+            if(this.tabell[i] == element) {
+                tabell[i] = tabell[antall];
+                tabell[antall] = null;
+                antall--;
+                return element;
+            }
+        }
         return null;
     }
 

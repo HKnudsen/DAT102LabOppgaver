@@ -1,0 +1,20 @@
+Analyse: Vi vil at dere skal se på et par av operasjonene/metodene, og angi kjøretid for
+TabellMengde og LenketMengde for disse metodene, gitt med O-notasjon. Svarene
+skal begrunnes. Ta med både best- og worst case der det er forskjell på disse.
+i. boolean inneholder(T element);
+ii. boolean erDelmengdeAv(MengdeADT<T> annenMengde);
+iii. boolean erLik(MengdeADT<T> annenMengde);
+iv. MengdeADT<T> union(MengdeADT<T> annenMengde);
+v. T fjern(T element);
+
+i. TabellMengde:    Best case på O for inneholder er 1 om elementet er første element i tabellen, og worst case er n,
+                    om elementet er det siste i listen
+i. LenketMengde:    Best case på O for inneholder er også 1 om elementet er først i listen og n om elementet er sist
+
+ii. TabellMengde:   Her er kjøretid O(n^2) da du sjekker alle elementene i hver av tabellene en gang per element.
+                    Gjelder også lenket
+iii. TabellMengde:  Her er begge kjøretidene også O(n^2) da du hvor hvert element ser gjennom hele den andre
+                    Tabellen eller Listen
+iv. TabellMengde:   Her er kjøretiden O(n*m) da du for hvert element må sjekke for duplikater. Samme kjøretid for begge
+v.  TabellMengde:   Kjøretiden er best case O(1) om elementet er det første, og O(n) om elementet er det siste.
+                    Gjelder for både Tabell og Lenket.

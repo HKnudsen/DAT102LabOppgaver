@@ -131,4 +131,14 @@ public class TabellMengdeTest {
         assertTrue(tabell1.erLik(tabell2));
         assertFalse(tabell1.erLik(tabell3));
     }
+
+    @Test
+    public void testTrekkFra() {
+        TabellMengde<Integer> tabell1 = new TabellMengde<>(4);
+        tabell1.leggTil(1);
+        tabell1.leggTil(2);
+        tabell1.leggTil(3);
+        tabell1.fjern(3);
+        assertEquals(Arrays.toString(new Object[]{1,2}), Arrays.toString(tabell1.tilTabell()));
+    }
 }
