@@ -6,19 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainTest {
     static void main() {
-        LenketMengde<Integer> lenke1 = new LenketMengde<>();
-        lenke1.leggTil(1);
-        lenke1.leggTil(2);
-        lenke1.leggTil(3);
-        lenke1.leggTil(4);
-        lenke1.leggTil(5);
+        JavaSetToMengde<Integer> set1 = new JavaSetToMengde<>();
+        set1.leggTil(1);
+        set1.leggTil(2);
+        set1.leggTil(3);
+        JavaSetToMengde<Integer> set2 = new JavaSetToMengde<>();
+        set2.leggTil(1);
+        set2.leggTil(2);
+        set2.leggTil(3);
+        set2.leggTil(4);
+        set2.leggTil(5);
 
-        Node<Integer> first = lenke1.getFirst();
-
-        while (first!=null) {
-            System.out.println(first.data);
-            first = first.neste;
-        }
+        System.out.println(set2.tilTabell());
 
     }
 }
