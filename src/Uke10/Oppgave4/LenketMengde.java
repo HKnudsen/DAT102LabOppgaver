@@ -36,31 +36,68 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        return false;
+        Node<T> current = this.first;
+        while (current != null) {
+            if(!annenMengde.inneholder(current.data)) {
+                return false;
+            }
+            current = current.neste;
+        }
+        return true;
     }
 
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
+        if(this.antall == annenMengde.antallElementer()) {
+            Node<T> current = this.first;
+            while (current != null) {
+                if(!annenMengde.inneholder(current.data)) {
+                    return false;
+                }
+                current = current.neste;
+            }
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean erDisjunkt(MengdeADT<T> annenMengde) {
-        return false;
+        Node<T> current = this.first;
+
+        while(current != null) {
+            if(annenMengde.inneholder(current.data)) {
+                return false;
+            }
+            current = current.neste;
+        }
+        return true;
     }
 
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-        return null;
+        MengdeADT<T> snitt = new LenketMengde<>();
+        for(T e : annenMengde.tilTabell()) {
+            if(this.inneholder(e)) {
+                snitt.leggTil(e);
+            }
+        }
+        return snitt;
     }
 
-    // Må bruke til tabell
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
         LenketMengde<T> union = new LenketMengde<>();
-        Node<T> annenMengdeCurrent = annenMengde.get
-        while (annenMengde.)
-        return null;
+        for (T e : annenMengde.tilTabell()) {
+            union.leggTil(e);
+        }
+        Node<T> current = this.first;
+        while (current != null) {
+            union.leggTil(current.data);
+            current = current.neste;
+        }
+
+        return union;
     }
 
     @Override

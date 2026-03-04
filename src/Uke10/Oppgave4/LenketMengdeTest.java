@@ -69,4 +69,60 @@ public class LenketMengdeTest {
         assertEquals(Arrays.toString(new Object[]{1,2}), Arrays.toString(lenkeResultat.tilTabell()));
     }
 
+    @Test
+    public void testUnion() {
+        LenketMengde<Integer> lenke1 = new LenketMengde<>();
+        lenke1.leggTil(1);
+        lenke1.leggTil(2);
+        lenke1.leggTil(3);
+        LenketMengde<Integer> lenke2 = new LenketMengde<>();
+        lenke2.leggTil(3);
+        lenke2.leggTil(4);
+
+        assertEquals(Arrays.toString(new Object[]{1,2,3,4}), Arrays.toString(lenke1.union(lenke2).tilTabell()));
+    }
+
+    @Test
+    public void testDisjunkt() {
+        LenketMengde<Integer> lenke1 = new LenketMengde<>();
+        lenke1.leggTil(1);
+        lenke1.leggTil(2);
+        lenke1.leggTil(3);
+        LenketMengde<Integer> lenke2 = new LenketMengde<>();
+        lenke2.leggTil(4);
+        lenke2.leggTil(5);
+        lenke2.leggTil(6);
+        assertTrue(lenke1.erDisjunkt(lenke2));
+        lenke2.leggTil(1);
+        assertFalse(lenke1.erDisjunkt(lenke2));
+    }
+
+    @Test
+    public void testErLik() {
+        LenketMengde<Integer> lenke1 = new LenketMengde<>();
+        lenke1.leggTil(1);
+        lenke1.leggTil(2);
+        lenke1.leggTil(3);
+        LenketMengde<Integer> lenke2 = new LenketMengde<>();
+        lenke2.leggTil(1);
+        lenke2.leggTil(2);
+        lenke2.leggTil(3);
+        assertTrue(lenke1.erLik(lenke2));
+        lenke2.leggTil(4);
+        assertFalse(lenke1.erLik(lenke2));
+    }
+
+    @Test
+    public void testErDelmengde() {
+        LenketMengde<Integer> lenke1 = new LenketMengde<>();
+        lenke1.leggTil(1);
+        lenke1.leggTil(2);
+        LenketMengde<Integer> lenke2 = new LenketMengde<>();
+        lenke2.leggTil(1);
+        lenke2.leggTil(2);
+        lenke2.leggTil(3);
+        lenke2.leggTil(4);
+        assertTrue(lenke1.erDelmengdeAv(lenke2));
+    }
+
 }

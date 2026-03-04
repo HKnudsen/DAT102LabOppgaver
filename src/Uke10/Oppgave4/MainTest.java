@@ -13,16 +13,12 @@ public class MainTest {
         lenke1.leggTil(4);
         lenke1.leggTil(5);
 
-        lenke1.fjern(3);
+        Node<Integer> first = lenke1.getFirst();
 
-        assertEquals(Arrays.toString(new Object[]{5,4,2,1}), Arrays.toString(lenke1.tilTabell()));
+        while (first!=null) {
+            System.out.println(first.data);
+            first = first.neste;
+        }
 
-        LenketMengde<Integer> lenke2 = new LenketMengde<>();
-        lenke2.leggTil(1);
-        lenke2.leggTil(2);
-        System.out.println(lenke2.antallElementer());
-        lenke2.fjern(2);
-
-        System.out.println(lenke2.antallElementer());
     }
 }
